@@ -29,8 +29,8 @@ The project demonstrates the following skills:
 1.  Clone the repository:
 
     ```bash
-    git clone [https://github.com/Ashmn1629/hopebridge-charity-server.git](https://github.com/Ashmn1629/hopebridge-charity-server.git)
-    cd hopebridge-charity-server
+    git clone [https://github.com/Ashmn1629/hopebridge.git](https://github.com/Ashmn1629/hopebridge.git)
+    cd hopebridge
     ```
 
 2.  Install Dependencies

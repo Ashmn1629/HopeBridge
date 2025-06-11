@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donation Form</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .donation-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: slideUp 0.8s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .form-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+      }
+
+      .form-subtitle {
+        color: #666;
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 16px 20px;
+        border: 2px solid #e0e6ed;
+        border-radius: 16px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #fafbfc;
+        outline: none;
+      }
+
+      .form-input:focus {
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .form-input::placeholder {
+        color: #9ca3af;
+        transition: opacity 0.3s ease;
+      }
+
+      .form-input:focus::placeholder {
+        opacity: 0.6;
+      }
+
+      textarea.form-input {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+      }
+
+      .amount-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .amount-preset {
+        padding: 12px;
+        border: 2px solid #e0e6ed;
+        border-radius: 12px;
+        background: #fafbfc;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      .amount-preset:hover {
+        border-color: #667eea;
+        background: rgba(102, 126, 234, 0.05);
+        transform: translateY(-2px);
+      }
+
+      .amount-preset.active {
+        border-color: #667eea;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .donate-btn {
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .donate-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      }
+
+      .donate-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .donate-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .donate-btn:hover::before {
+        left: 100%;
+      }
+
+      .security-note {
+        text-align: center;
+        margin-top: 20px;
+        color: #6b7280;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .lock-icon {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+
+      @media (max-width: 480px) {
+        .donation-container {
+          padding: 30px 20px;
+        }
+
+        .form-title {
+          font-size: 2rem;
+        }
+
+        .amount-group {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .heart-animation {
+        display: inline-block;
+        animation: heartbeat 2s ease-in-out infinite;
+        color: #ef4444;
+        margin-left: 8px;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        50%,
+        100% {
+          transform: scale(1);
+        }
+        25%,
+        75% {
+          transform: scale(1.1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="donation-container">
+      <div class="form-header">
+        <h1 class="form-title">Make a Difference</h1>
+        <p class="form-subtitle">
+          Your generosity creates lasting impact<span class="heart-animation"
+            >❤️</span
+          >
+        </p>
+      </div>
+
+      <form id="donationForm" action="/donate" method="POST">
+        <div class="form-group">
+          <input
+            type="text"
+            name="name"
+            class="form-input"
+            placeholder="Your Full Name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-input"
+            placeholder="Your Email Address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="amount-group">
+            <div class="amount-preset" data-amount="25">$25</div>
+            <div class="amount-preset" data-amount="50">$50</div>
+            <div class="amount-preset" data-amount="100">$100</div>
+          </div>
+          <input
+            type="number"
+            name="amount"
+            class="form-input"
+            placeholder="Enter Custom Amount ($)"
+            required
+            min="1"
+          />
+        </div>
+
+        <div class="form-group">
+          <textarea
+            name="message"
+            class="form-input"
+            placeholder="Share why you're supporting us (optional)"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="donate-btn">Complete Your Donation</button>
+      </form>
+
+      <div class="security-note">
+        <svg class="lock-icon" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        Your donation is secure and encrypted
+      </div>
+    </div>
+
+    <script>
+      // Amount preset functionality
+      const presets = document.querySelectorAll(".amount-preset");
+      const amountInput = document.querySelector('input[name="amount"]');
+
+      presets.forEach((preset) => {
+        preset.addEventListener("click", () => {
+          // Remove active class from all presets
+          presets.forEach((p) => p.classList.remove("active"));
+
+          // Add active class to clicked preset
+          preset.classList.add("active");
+
+          // Set the amount in the input
+          amountInput.value = preset.dataset.amount;
+        });
+      });
+
+      // Clear preset selection when custom amount is entered
+      amountInput.addEventListener("input", () => {
+        presets.forEach((p) => p.classList.remove("active"));
+      });
+
+      // Form submission with animation
+      document
+        .getElementById("donationForm")
+        .addEventListener("submit", (e) => {
+          const btn = document.querySelector(".donate-btn");
+          btn.style.transform = "scale(0.98)";
+
+          setTimeout(() => {
+            btn.style.transform = "";
+          }, 150);
+        });
+
+      // Add floating animation to form elements on focus
+      const inputs = document.querySelectorAll(".form-input");
+      inputs.forEach((input) => {
+        input.addEventListener("focus", (e) => {
+          e.target.parentElement.style.transform = "translateY(-2px)";
+        });
+
+        input.addEventListener("blur", (e) => {
+          e.target.parentElement.style.transform = "";
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found | HopeBridge</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Animated background elements */
+      .background-elements {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .floating-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      .shape-1 {
+        top: 10%;
+        left: 10%;
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 50%;
+        animation-delay: 0s;
+      }
+
+      .shape-2 {
+        top: 20%;
+        right: 15%;
+        width: 80px;
+        height: 80px;
+        background: white;
+        border-radius: 20px;
+        animation-delay: 2s;
+      }
+
+      .shape-3 {
+        bottom: 15%;
+        left: 20%;
+        width: 60px;
+        height: 60px;
+        background: white;
+        border-radius: 30px;
+        animation-delay: 4s;
+      }
+
+      .shape-4 {
+        bottom: 30%;
+        right: 10%;
+        width: 120px;
+        height: 120px;
+        background: white;
+        border-radius: 50%;
+        animation-delay: 6s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-20px) rotate(90deg);
+        }
+        50% {
+          transform: translateY(-40px) rotate(180deg);
+        }
+        75% {
+          transform: translateY(-20px) rotate(270deg);
+        }
+      }
+
+      /* Particles */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: particle-float 15s infinite linear;
+      }
+
+      @keyframes particle-float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Main container */
+      .container {
+        text-align: center;
+        max-width: 800px;
+        padding: 2rem;
+        position: relative;
+      }
+
+      /* 404 Animation */
+      .error-code {
+        font-size: 12rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff, #e6f3ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+        animation: bounce 2s ease-in-out infinite;
+      }
+
+      .error-code::before {
+        content: "404";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 107, 0.3),
+          rgba(102, 126, 234, 0.3)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glitch 3s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes glitch {
+        0%,
+        90%,
+        100% {
+          transform: translate(0);
+        }
+        10% {
+          transform: translate(-2px, 2px);
+        }
+        20% {
+          transform: translate(2px, -2px);
+        }
+        30% {
+          transform: translate(-2px, -2px);
+        }
+        40% {
+          transform: translate(2px, 2px);
+        }
+        50% {
+          transform: translate(-2px, 2px);
+        }
+        60% {
+          transform: translate(2px, -2px);
+        }
+        70% {
+          transform: translate(-2px, -2px);
+        }
+        80% {
+          transform: translate(2px, 2px);
+        }
+      }
+
+      /* Animated illustration */
+      .illustration {
+        margin: 2rem 0;
+        position: relative;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lost-icon {
+        font-size: 8rem;
+        color: rgba(255, 255, 255, 0.9);
+        animation: sway 4s ease-in-out infinite;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes sway {
+        0%,
+        100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      /* Floating elements around the icon */
+      .floating-element {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 2rem;
+        animation: orbit 8s infinite ease-in-out;
+      }
+
+      .element-1 {
+        top: 20%;
+        left: 20%;
+        animation-delay: 0s;
+      }
+
+      .element-2 {
+        top: 30%;
+        right: 15%;
+        animation-delay: 2s;
+      }
+
+      .element-3 {
+        bottom: 20%;
+        left: 15%;
+        animation-delay: 4s;
+      }
+
+      .element-4 {
+        bottom: 30%;
+        right: 20%;
+        animation-delay: 6s;
+      }
+
+      @keyframes orbit {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+        25% {
+          transform: translateY(-15px) scale(1.1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translateY(-30px) scale(1.2);
+          opacity: 1;
+        }
+        75% {
+          transform: translateY(-15px) scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      /* Content */
+      .error-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: white;
+        animation: slideInUp 1s ease-out;
+      }
+
+      .error-message {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        animation: slideInUp 1s ease-out 0.2s both;
+      }
+
+      .helpful-message {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 3rem;
+        animation: slideInUp 1s ease-out 0.4s both;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Buttons */
+      .button-group {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: slideInUp 1s ease-out 0.6s both;
+      }
+
+      .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        color: white;
+        box-shadow: 0 10px 30px rgba(238, 90, 36, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(238, 90, 36, 0.6);
+        background: linear-gradient(135deg, #ff5252, #d84315);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      /* Fun facts section */
+      .fun-facts {
+        margin-top: 4rem;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        animation: slideInUp 1s ease-out 0.8s both;
+      }
+
+      .fun-facts h3 {
+        color: white;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .fun-facts p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+      }
+
+      .fun-facts .highlight {
+        color: #ff6b6b;
+        font-weight: 600;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .error-code {
+          font-size: 8rem;
+        }
+
+        .error-title {
+          font-size: 2rem;
+        }
+
+        .error-message {
+          font-size: 1rem;
+        }
+
+        .lost-icon {
+          font-size: 6rem;
+        }
+
+        .floating-element {
+          font-size: 1.5rem;
+        }
+
+        .button-group {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 300px;
+          justify-content: center;
+        }
+
+        .fun-facts {
+          margin-top: 2rem;
+          padding: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .error-code {
+          font-size: 6rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        .illustration {
+          height: 150px;
+        }
+
+        .lost-icon {
+          font-size: 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-elements">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+    </div>
+
+    <div class="particles"></div>
+
+    <div class="container">
+      <div class="error-code">404</div>
+
+      <div class="illustration">
+        <div class="lost-icon">🧭</div>
+        <div class="floating-element element-1">⭐</div>
+        <div class="floating-element element-2">🌟</div>
+        <div class="floating-element element-3">✨</div>
+        <div class="floating-element element-4">💫</div>
+      </div>
+
+      <h1 class="error-title">Oops! You've Wandered Off the Path</h1>
+
+      <p class="error-message">
+        It looks like you've discovered a page that doesn't exist. Don't worry,
+        even the best explorers sometimes take a wrong turn!
+      </p>
+
+      <p class="helpful-message">
+        Let's get you back to where you can continue making a difference in
+        children's lives.
+      </p>
+
+      <div class="button-group">
+        <a href="/" class="btn btn-primary"> 🏠 Return Home </a>
+        <a href="/about" class="btn btn-secondary"> 📖 Learn About Us </a>
+      </div>
+
+      <div class="fun-facts">
+        <h3>🌟 Did You Know?</h3>
+        <p>
+          While you were looking for this page, HopeBridge provided
+          <span class="highlight">47 nutritious meals</span> to children in
+          need!
+        </p>
+        <p>
+          Every minute, we're working to bridge the gap between hope and reality
+          for families in <span class="highlight">rural communities</span>.
+        </p>
+        <p>
+          <span class="highlight">Join us</span> in making every page of a
+          child's story filled with opportunity and hope! 💝
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Create floating particles
+      function createParticles() {
+        const particlesContainer = document.querySelector(".particles");
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 15 + "s";
+          particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Easter egg: konami code
+      let konamiCode = [];
+      const konamiPattern = [
+        "ArrowUp",
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowLeft",
+        "ArrowRight",
+        "KeyB",
+        "KeyA",
+      ];
+
+      document.addEventListener("keydown", (e) => {
+        konamiCode.push(e.code);
+        if (konamiCode.length > konamiPattern.length) {
+          konamiCode.shift();
+        }
+
+        if (JSON.stringify(konamiCode) === JSON.stringify(konamiPattern)) {
+          // Easter egg activation
+          document.body.style.animation = "rainbow 1s infinite";
+          setTimeout(() => {
+            document.body.style.animation = "";
+            alert(
+              "🎉 Congratulations! You found the secret code! HopeBridge appreciates curious explorers like you!"
+            );
+          }, 3000);
+          konamiCode = [];
+        }
+      });
+
+      // Rainbow animation for easter egg
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Fun interactive elements
+      document.querySelector(".lost-icon").addEventListener("click", () => {
+        const icon = document.querySelector(".lost-icon");
+        icon.style.transform = "scale(1.2) rotate(360deg)";
+        setTimeout(() => {
+          icon.style.transform = "scale(1) rotate(0deg)";
+        }, 500);
+      });
+
+      // Random fun facts
+      const funFacts = [
+        "While you were looking for this page, HopeBridge provided <span class='highlight'>47 nutritious meals</span> to children in need!",
+        "In the time it took to load this page, <span class='highlight'>3 children</span> received educational support through our programs!",
+        "Did you know? Our programs have helped <span class='highlight'>15,000+ children</span> build brighter futures!",
+        "Every second counts! We've partnered with <span class='highlight'>250+ schools</span> to transform education in rural areas!",
+        "Amazing fact: We've provided over <span class='highlight'>1 million meals</span> to growing minds and bodies!",
+      ];
+
+      // Update fun fact periodically
+      setInterval(() => {
+        const factElement = document.querySelector(".fun-facts p");
+        const randomFact =
+          funFacts[Math.floor(Math.random() * funFacts.length)];
+        factElement.innerHTML = randomFact;
+      }, 5000);
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        createParticles();
+      });
+
+      // Smooth navigation
+      document.querySelectorAll('a[href^="/"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const href = link.getAttribute("href");
+
+          // Add a nice transition effect
+          document.body.style.opacity = "0.8";
+          document.body.style.transform = "scale(0.95)";
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 200);
+        });
+      });
+    </script>
+  </body>
+</html>

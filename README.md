@@ -29,7 +29,7 @@ The project demonstrates the following skills:
 1.  Clone the repository:
 
     ```bash
-    git clone [https://github.com/Ashmn1629/hopebridge.git](https://github.com/Ashmn1629/hopebridge.git)
+    git clone (https://github.com/Ashmn1629/hopebridge.git)
     cd hopebridge
     ```
 
